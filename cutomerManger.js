@@ -10,11 +10,6 @@ exports.insertCustomer = function(db) {
       console.log("Customer is Added "+r);
   };
 
-exports.myShirts = function () {
-    return {
-        color:'Blue',
-        size:50
-    };
-};
+
 
 
