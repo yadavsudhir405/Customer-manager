@@ -1,0 +1,39 @@
+.header{
+    width: 100%;
+    background-color: #027FF4;
+
+}
+.navbar-inner{
+    background: none;
+    background-color: #027FF4;
+    font-weight: 500;
+}
+.form-label{
+    font-weight: 500;
+    text-align: center;
+    font-size: medium;
+}
+.error-message {
+    position:absolute;
+    padding: 5px;
+    background-color: #E03930;
+    color:white;
+    top:0px;
+    left:270px;
+}
+.row{
+     margin-bottom: 20px;
+}
+form input[type="text"],form input[type="email"],.registration-edit select{
+ width: 250px;
+}
+.date-icon{
+    position: absolute;
+    left:264px;
+    top:0px;
+}
+
+
+footer{
+
+}

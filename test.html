@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head >
+    <title>Customer Manager</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/animations.css" rel="stylesheet" />
+    <link href="Content/style1.css" rel="stylesheet" />
+</head>
+<body >
+<div>
+<div class="header" >
+    <nav class="navbar navbar-default nav-tabs-justified   navbar-inner  ">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Customer Management
+                <img src="Content/images/people.png" alt="Customer Management"/>
+                </a>
+
+            </div>
+            <ul class="nav navbar-nav ">
+                <li class="active"><a href="#">Customers</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container" data-ng-controller = "cityController">
+    <form name="registrationForm" class="registration-edit" novalidate>
+        <div class="row">
+            <div class="col-lg-2 form-label">
+                Name
+            </div>
+            <div class="col-lg-10">
+                <input type="text" name="name" data-ng-model="user.name" class="form-control" required/>
+                <span class="error-message" data-ng-show="registrationForm.name.$touched && registrationForm.name.$invalid ">
+                    Name is required
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 form-label">
+                Email
+            </div>
+            <div class="col-lg-10">
+                <input type="email" class="form-control" name="email" data-ng-model="user.email" required/>
+                <span class="error-message" data-ng-show="registrationForm.email.$touched && registrationForm.email.$invalid ">
+                    Invalid Email
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 form-label">
+                Gender
+            </div>
+            <div class="col-lg-10">
+                <input type="radio"  name= "gender" data-ng-model= "user.gender" value= "Male" /> Male
+                <input type="radio"  name= "gender" data-ng-model= "user.gender" value= "Female"/>                    Female
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 form-label">
+                Date of Birth
+            </div>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" uib-datepicker-popup datepickerConfig="dd-mm-yyy" data-ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" close-text="Close"/>
+                <span class="date-icon">
+                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 form-label">
+                City
+            </div>
+            <div class="col-lg-10">
+                <select data-ng-model="user.city" class="form-control" required>
+                    <option data-ng-repeat="city in cities">{{city}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-1 form-label">
+                <button data-ng-click="reset(registrationForm)" class="form-control btn btn-primary">Reset</button>
+            </div>
+            <div class="col-lg-1 form-label">
+                <button data-ng-click="submit(user)" class="form-control btn btn-primary" data-ng-disabled="registrationForm                        .$invalid " >Submit
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+</div>
+<footer>
+
+</footer>
+
+
+<!-- 3rd party libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+<script src="Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="Scripts/tweenMax.min.js"></script>
+<script>
+    var app = angular.module("app", ['ui.bootstrap']);
+    app.controller("cityController",function($scope)
+    {
+        var cities =["Bangalore","New Delhi","Pune","Kolkata"];
+        $scope.master = {};
+        $scope.cities = cities;
+        var user = {};
+        user.dob = new Date();
+        $scope.user = user;
+
+        $scope.dt = new Date();
+
+        $scope.reset = function(form){
+            if(form){
+                form.$setPristine();
+                form.$setUntouched();
+            }
+            $scope.user = angular.copy($scope.master);
+            $scope.reset();
+
+        }
+        $scope.submit = function(user){
+            $scope.master = angular.copy(user);
+            console.log($scope.master)
+            $scope.reset();
+        }
+        $scope.popup = {
+            opened :false
+        }
+        $scope.open = function () {
+            $scope.popup.opened = true;
+        }
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            maxDate: new Date,
+            minDate: new Date(1947,8,15),
+            startingDay: 1
+        };
+    });
+</script>
+
+
+</body>
+</html>

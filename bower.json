@@ -1,0 +1,20 @@
+{
+  "name": "CustomerManager",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Dan Wahlin"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-datepicker": "^2.0.3"
+  }
+}
