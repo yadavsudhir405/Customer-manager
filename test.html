@@ -114,7 +114,7 @@
 <script src="Scripts/tweenMax.min.js"></script>
 <script>
     var app = angular.module("app", ['ui.bootstrap']);
-    app.controller("cityController",function($scope)
+    app.controller("cityController",function($scope, $http)
     {
         var cities =["Bangalore","New Delhi","Pune","Kolkata"];
         $scope.master = {};
@@ -137,6 +137,11 @@
         $scope.submit = function(user){
             $scope.master = angular.copy(user);
             console.log($scope.master)
+            $http.post("/api/dataservice/employee",user).then(function successCallback(response){
+                console.log("Call Made successfully");
+            },function errorCallback(response){
+                console.log("ERROR!!!!!");
+            });
             $scope.reset();
         }
         $scope.popup = {

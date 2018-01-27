@@ -14,8 +14,10 @@
     "express": "^4.9.7",
     "express-session": "^1.8.2",
     "jade": ">=1.7.0",
+    "json-object-mapper": "^1.5.2",
     "mongodb": "^2.2.34",
-    "mongoose": ">=3.8.17"
+    "mongodb-models": "0.0.10",
+    "mongoose": ">=5.0.1"
   },
   "devDependencies": {
     "karma": "^0.12.24",

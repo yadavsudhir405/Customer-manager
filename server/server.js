@@ -6,8 +6,9 @@ var express = require('express'),
     csrf = require('csurf'),
     routes = require('./routes'),
     api = require('./routes/api'),
-    DB = require('./accesfsDB'),
+    DB = require('./accessDB'),
     protectJSON = require('./lib/protectJSON'),
+    Employee = require('./models/employee');
     app = express();
 
 app.set('views', __dirname + '/views');
@@ -35,8 +36,8 @@ process.on('uncaughtException', function (err) {
     if (err) console.log(err, err.stack);
 });
 
-//Local Connection 
-var conn = 'mongodb://localhost/customermanager';
+//Local Connection
+var conn="mongodb://demo:demo@localhost:27017/demo";
 var db = new DB.startup(conn);
 
 // Routes
@@ -44,6 +45,16 @@ app.get('/', routes.index);
 
 // JSON API
 var baseUrl = '/api/dataservice/';
+
+app.post(baseUrl+'employee',function (req,response) {
+    // console.log(req.body);
+    var e = new Employee(req.body);
+
+    e.save().then(function (data) {
+        console.log("Saved successfully");
+    });
+
+});
 
 app.get(baseUrl + 'Customers', api.customers);
 app.get(baseUrl + 'Customer/:id', api.customer);
